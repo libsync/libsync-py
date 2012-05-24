@@ -1,0 +1,25 @@
+# Compiled Source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Text Editor #
+###############
+#*
+*~
+
+# Automake #
+############
+Makefile
+*.in
+
+# OS generated file #
+#####################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
