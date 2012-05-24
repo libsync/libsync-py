@@ -19,7 +19,7 @@ AUTOMAKE_OPTIONS = subdir-objects
 ACLOCAL_AMFLAGS = -I ../m4
 
 lib_LTLIBRARIES = libadt.la
-libadt_la_SOURCES = list.c arr.c
+libadt_la_SOURCES = list.c arr.c avl.c
 libadt_la_LDFLAGS = -version-info 0:1:0
 
 #TEST SECTION
