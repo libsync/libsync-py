@@ -6,16 +6,39 @@
 *.exe
 *.o
 *.so
+*.lo
+*.la
+*.a
 
 # Text Editor #
 ###############
 #*
 *~
 
-# Automake #
-############
+# Automake / Autoconf #
+#######################
 Makefile
 *.in
+aclocal.m4
+.deps
+.libs
+*.log
+.dirstamp
+ar-lib
+autom4te.cache
+compile
+config.guess
+config.h
+config.status
+config.sub
+configure
+depcomp
+install-sh
+libtool
+ltmain.sh
+m4
+missing
+stamp-h1
 
 # OS generated file #
 #####################
@@ -23,3 +46,13 @@ Makefile
 ehthumbs.db
 Icon?
 Thumbs.db
+
+# ADT #
+#######
+arr
+list
+
+# Libsync Specific #
+####################
+syncd
+syncc
