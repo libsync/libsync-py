@@ -201,11 +201,11 @@ arr_remove (arr_t arr, size_t idx)
     return ARR_INVALID_IDX;
 
   /* Shift elements into place */
-  for (i = idx; i < arr->len; i++)
+  for (i = idx; i < arr->len - 1; i++)
     arr->arr[i] = arr->arr[i+1];
 
   /* Fix array length */
   arr->len--;
 
-  return ARR_UNKNOWN;
+  return ARR_OK;
 }
