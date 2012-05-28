@@ -1,0 +1,50 @@
+_Libmew_
+* Milestones
+** DONE Milestone: v0.01
+   CLOSED: [2012-05-04 Fri 22:33]
+   Spec: Upon API call, destructively sync to a remote client
+   - Remote Storage: WebDAV
+** DONE Milestone: v0.02
+   CLOSED: [2012-05-09 Wed 09:32]
+   Spec: After file change, destructively sync to a remote client
+   - Automatic Pair-wise sync
+** TODO Milestone: v0.03
+   Spec: After file change, destructively sync to all remote client
+   - Broadcast-based sync
+** Milestone: v0.04
+*** DONE Milestone: v0.04a
+    CLOSED: [2012-05-09 Wed 09:32]
+    Spec: Use encryption while syncing
+    - Sha2 based encryption
+*** TODO Milestone: v0.04b
+    Spec: Use diff-based sync to avoid unnecessary changes
+    - Diff based syncing
+** DONE Milestone: v0.05
+   CLOSED: [2012-05-09 Wed 09:32]
+   Spec: Build demo client
+   - mewc and mewd
+
+* API
+  - sync
+  - init
+  - add_remote
+  - add_file
+  - remove_file
+  - get_file_list
+* Dependencies
+  - curl
+  - xml
+  - open-ssl
+  - pthread
+  - inih
+* CS 241 Like Achievements
+** Build IPC via sockets
+** Build Shell interface
+** Encryption
+** Communication Protocol Agnostic (CPA)
+** Python Wrapper
+*** Can be used to interface with (CPA)
+** Web Interface
+** Sync Based on Meta Data (timestamp/delete/update flags)
+** iNotify based Syncing
+
