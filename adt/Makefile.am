@@ -19,11 +19,11 @@ AUTOMAKE_OPTIONS = subdir-objects
 ACLOCAL_AMFLAGS = -I ../m4
 
 lib_LTLIBRARIES = libadt.la
-libadt_la_SOURCES = list.c arr.c avl.c
+libadt_la_SOURCES = list.c arr.c avl.c stack.c queue.c
 libadt_la_LDFLAGS = -version-info 0:1:0
 
 #TEST SECTION
-check_PROGRAMS = list arr avl
+check_PROGRAMS = list arr avl stack queue
 TESTS = $(check_PROGRAMS)
 list_SOURCES = test/list.c
 list_LDADD = libadt.la
@@ -31,3 +31,7 @@ arr_SOURCES = test/arr.c
 arr_LDADD = libadt.la
 avl_SOURCES = test/avl.c
 avl_LDADD = libadt.la
+stack_SOURCES = test/stack.c
+stack_LDADD = libadt.la
+queue_SOURCES = test/queue.c
+queue_LDADD = libadt.la
