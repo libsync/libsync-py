@@ -44,7 +44,7 @@ struct _stack_t
 struct _stack_node_t
 {
   void ** data;
-  size_t size, wlen;
+  size_t size, len;
   stack_node_t next;
 };
 
@@ -64,13 +64,13 @@ stack_init (void)
 
   /* Initialize the stack */
   stack->size = 0;
-  stack->head = (char*)stack + sizeof (struct _stack_t);
+  stack->head = (stack_node_t)((char*)stack + sizeof (struct _stack_t));
 
   /* Initialize the first node */
   stack->head->len = 0;
   stack->head->size = START_SIZE;
   stack->head->next = NULL;
-  stack->head->data = (char*)stack->head + sizeof (struct _stack_node_t);
+  stack->head->data = (void**)((char*)stack->head + sizeof (struct _stack_node_t));
 
   return stack;
 }
@@ -135,7 +135,7 @@ stack_push (stack_t stack, void * data)
 	  stack->unused->next = stack->head;
 	  stack->unused->size = stack->head->size << 1;
 	  stack->unused->len = 0;
-	  stack->unused->data = (char*)stack->unused + sizeof (struct _stack_node_t);
+	  stack->unused->data = (void**)((char*)stack->unused + sizeof (struct _stack_node_t));
 	}
       
       stack->head = stack->unused;

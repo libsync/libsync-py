@@ -19,8 +19,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define _ADT_STACK_H_
 #ifndef _ADT_STACK_H_
+#define _ADT_STACK_H_
 
 /* NOTE: All stack operations run in ~O(1) time */
 
