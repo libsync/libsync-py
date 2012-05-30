@@ -109,14 +109,14 @@ main (int argc, char ** argv)
     }
   if (size != stack_size (stack))
     {
-      printf ("Many Data: Size Failure\nExpected: %d Got: %d\n", size, stack_size (stack));
+      printf ("Many Data: Size Failure\nExpected: %lu Got: %lu\n", size, stack_size (stack));
       return EXIT_FAILURE;
     }
   for (i = size; i > 0; i--)
-    if (stack_peek (stack) != (void*)(i-1) ||
-	stack_pop (stack) != (void*)(i-1))
+    if ((tmp = stack_peek (stack)) != (void*)(i-1) ||
+	(tmp = stack_pop (stack)) != (void*)(i-1))
       {
-	printf ("Many Data: Integrity Failure\n");
+	printf ("Many Data: Integrity Failure\nExpected: %p Got %p\n", i-1, tmp);
 	return EXIT_FAILURE;
       }
     

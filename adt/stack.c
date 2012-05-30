@@ -65,6 +65,7 @@ stack_init (void)
   /* Initialize the stack */
   stack->size = 0;
   stack->head = (stack_node_t)((char*)stack + sizeof (struct _stack_t));
+  stack->unused = NULL;
 
   /* Initialize the first node */
   stack->head->len = 0;
@@ -81,6 +82,16 @@ stack_peek (stack_t stack)
   /* Empty Stack Check */
   if (stack->size == 0)
     return NULL;
+
+  /* Check for the end of the array and move the link into unused */
+  if (stack->head->len == 0)
+    {
+      /* If there is already an unused node delete it */
+      if (stack->unused != NULL)
+	free (stack->unused);
+      stack->unused = stack->head;
+      stack->head = stack->head->next;
+    }
 
   return stack->head->data[stack->head->len-1];
 }
@@ -162,6 +173,13 @@ stack_clear (stack_t stack)
       tmp = stack->head;
       stack->head = stack->head->next;
       free (tmp);
+    }
+
+  /* Free Any unused nodes */
+  if (stack->unused != NULL)
+    {
+      free (stack->unused);
+      stack->unused = NULL;
     }
 
   /* Set the length of the last node to 0 */
