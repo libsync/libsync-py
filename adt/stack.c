@@ -64,16 +64,29 @@ stack_init (void)
 
   /* Initialize the stack */
   stack->size = 0;
-  stack->head = (stack_node_t)((char*)stack + sizeof (struct _stack_t));
+  stack->head = (stack_node_t)((uint8_t*)stack + sizeof (struct _stack_t));
   stack->unused = NULL;
 
   /* Initialize the first node */
   stack->head->len = 0;
   stack->head->size = START_SIZE;
   stack->head->next = NULL;
-  stack->head->data = (void**)((char*)stack->head + sizeof (struct _stack_node_t));
+  stack->head->data = (void**)((uint8_t*)stack->head + sizeof (struct _stack_node_t));
 
   return stack;
+}
+
+static void
+stack_eob (stack_t stack)
+{
+  if (stack->head->len == 0)
+    {
+      /* If there is already an unused node delete it */
+      if (stack->unused != NULL)
+	free (stack->unused);
+      stack->unused = stack->head;
+      stack->head = stack->head->next;
+    }
 }
 
 void *
@@ -84,14 +97,7 @@ stack_peek (stack_t stack)
     return NULL;
 
   /* Check for the end of the array and move the link into unused */
-  if (stack->head->len == 0)
-    {
-      /* If there is already an unused node delete it */
-      if (stack->unused != NULL)
-	free (stack->unused);
-      stack->unused = stack->head;
-      stack->head = stack->head->next;
-    }
+  stack_eob (stack);
 
   return stack->head->data[stack->head->len-1];
 }
@@ -104,14 +110,7 @@ stack_pop (stack_t stack)
     return NULL;
 
   /* Check for the end of the array and move the link into unused */
-  if (stack->head->len == 0)
-    {
-      /* If there is already an unused node delete it */
-      if (stack->unused != NULL)
-	free (stack->unused);
-      stack->unused = stack->head;
-      stack->head = stack->head->next;
-    }
+  stack_eob (stack);
 
   /* Decrease the size of the stack */
   stack->size--;
@@ -146,7 +145,7 @@ stack_push (stack_t stack, void * data)
 	  stack->unused->next = stack->head;
 	  stack->unused->size = stack->head->size << 1;
 	  stack->unused->len = 0;
-	  stack->unused->data = (void**)((char*)stack->unused + sizeof (struct _stack_node_t));
+	  stack->unused->data = (void**)((uint8_t*)stack->unused + sizeof (struct _stack_node_t));
 	}
       
       stack->head = stack->unused;

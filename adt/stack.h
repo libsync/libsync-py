@@ -22,7 +22,7 @@
 #ifndef _ADT_STACK_H_
 #define _ADT_STACK_H_
 
-/* NOTE: All stack operations run in ~O(1) time */
+/* NOTE: All stack operations run in ~O(1) time except clear / destroy */
 
 typedef struct _stack_t * stack_t;
 
