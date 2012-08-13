@@ -2,10 +2,7 @@
 * TODO Milestones
 * TODO API
 * Dependencies
-  - [[http://curl.haxx.se/][libcurl]]
-  - [[http://www.xmlsoft.org/][libxml]]
-  - [[www.openssl.org/][openssl]]
-  - [[http://en.wikipedia.org/wiki/POSIX_Threads][pthread]]
+  - Python
+  - Sphinx (Optional for Documentation)
 
-
-
+* Software Stack
