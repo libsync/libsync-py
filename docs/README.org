@@ -1,8 +1,0 @@
-* TODO Description
-* TODO Milestones
-* TODO API
-* Dependencies
-  - Python
-  - Sphinx (Optional for Documentation)
-
-* Software Stack
